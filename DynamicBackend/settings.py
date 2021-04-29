@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'django_filters',
+    'rest_framework.authtoken',
     'category.apps.CategoryConfig',
     'members.apps.MembersConfig',
     'portfolio.apps.PortfolioConfig',
@@ -127,9 +129,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE' : 10,
+    'DEFAULT_PAGINATION_CLASS': 'DynamicBackend.pagination.PageNumberWithPageSizePagination',
+    'DEFAULT_FILTER_BACKENDS' : ['rest_framework.filters.OrderingFilter', 'django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES' : [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
 }
+
+FILTERS_DEFAULT_LOOKUP_EXPR = 'icontains'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

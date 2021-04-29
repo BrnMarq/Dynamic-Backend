@@ -6,3 +6,4 @@ from rest_framework import viewsets, permissions
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    filterset_fields = ['title', 'description', 'categories']

@@ -6,3 +6,4 @@ from rest_framework import viewsets, permissions
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    filterset_fields = ['name']

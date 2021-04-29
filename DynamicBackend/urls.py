@@ -6,6 +6,7 @@ from portfolio.views import ItemViewSet
 from category.views import CategoryViewSet
 from blog.views import PostViewSet
 from django.conf import settings
+from rest_framework.authtoken import views
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -18,6 +19,7 @@ router.register(r'posts', PostViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-token-auth/', views.obtain_auth_token),
 ]
 
 if settings.DEBUG:
