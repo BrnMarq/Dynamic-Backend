@@ -146,4 +146,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000',]
 
-STATIC_ROOT = path(BASE_DIR, "media")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
